@@ -18,7 +18,7 @@
 
       <v-tooltip bottom>
           <template v-slot:activator="{ on }">
-            <v-btn icon v-on="on">
+            <v-btn icon v-on="on" @click.stop="showDialog">
               <v-icon size="30">emoji_objects</v-icon>
             </v-btn>          
           </template>
@@ -26,6 +26,9 @@
       </v-tooltip>
 
     </v-app-bar>
+
+    <About />
+
     <v-content>
       <router-view/>
     </v-content>
@@ -34,10 +37,19 @@
 
 <script>
 
+import About from './components/About'
+import { mapMutations } from 'vuex'
+
 export default {
   name: 'App',
+  components: {
+    About
+  },
   data: () => ({
-    //
+    
   }),
+  methods: {
+    ...mapMutations(['showDialog'])
+  }
 };
 </script>
