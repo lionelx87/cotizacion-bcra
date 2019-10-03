@@ -9,9 +9,11 @@
 
       <v-tooltip bottom>
           <template v-slot:activator="{ on }">
-            <v-btn icon v-on="on">
-              <v-icon size="30">attach_money</v-icon>
-            </v-btn>          
+            <router-link :to="{ name: 'cotizacion' }">
+              <v-btn icon v-on="on">
+                <v-icon size="30">attach_money</v-icon>
+              </v-btn>
+            </router-link>
           </template>
           <span>Cotización</span>
       </v-tooltip>
@@ -53,3 +55,9 @@ export default {
   }
 };
 </script>
+
+<style>
+  a{
+    text-decoration: none;
+  }  
+</style>

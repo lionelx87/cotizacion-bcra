@@ -8,9 +8,16 @@ export default new Router({
     mode: 'history',
     base: process.env.BASE_URL,
     routes: [{
-        path: '/',
-        name: 'home',
-        component: () =>
-            import ( /* webpackChunkName: "home" */ './views/Home.vue')
-    }]
+            path: '/',
+            name: 'home',
+            component: () =>
+                import ( /* webpackChunkName: "home" */ './views/Home.vue')
+        },
+        {
+            path: '/cotizacion',
+            name: 'cotizacion',
+            component: () =>
+                import ( /* webpackChunkName: "cotizacion" */ './views/Cotizacion.vue')
+        }
+    ]
 })
