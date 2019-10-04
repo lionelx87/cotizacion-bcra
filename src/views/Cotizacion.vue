@@ -23,17 +23,56 @@
                 </v-card>
             </v-col>
         </v-row>
+        <Loading />
     </v-container>
 </template>
 
 <script>
+
+import axios from 'axios'
+import { mapMutations } from 'vuex' 
+import Loading from '../components/Loading'
+
 export default {
+    components: {
+        Loading
+    },
     data() {
         return {
+            datos: [],
             picker: new Date().toISOString().substr(0, 10),
             min: '2002-03-04',
             max: new Date().toISOString().substr(0, 10),
+            dolar: '',
+            api_key: process.env.VUE_APP_API_KEY_BCRA
         }
+    },
+    methods: {
+        ...mapMutations(['hideLoading', 'showLoading']),
+        async getQuotation() {
+            this.dolar = '';
+            try {
+                if(this.datos.length <= 0){
+                    this.showLoading();
+                    this.datos = await axios.get('http://localhost:8080/usd_of', { headers: {
+                        "Authorization" : `BEARER ${this.api_key}`
+                    }});
+                    this.datos = this.datos.data;
+                }
+                this.datos.forEach( itemCotizacion => {
+                    if(itemCotizacion.d === this.fecha){
+                        this.dolar = itemCotizacion.v;
+                    }
+                });                                
+            } catch (erro) {
+                
+            }finally {
+                this.hideLoading();
+            }
+        }
+    },
+    mounted() {
+        this.getQuotation();
     }
     
 }

@@ -5,7 +5,8 @@ Vue.use(Vuex)
 
 export default new Vuex.Store({
     state: {
-        dialog: false
+        dialog: false,
+        loading: false
     },
     mutations: {
         hideDialog(state) {
@@ -13,6 +14,12 @@ export default new Vuex.Store({
         },
         showDialog(state) {
             state.dialog = true;
+        },
+        hideLoading(state) {
+            state.loading = false;
+        },
+        showLoading(state) {
+            state.loading = true;
         }
     },
     actions: {
