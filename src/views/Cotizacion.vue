@@ -10,6 +10,7 @@
                         v-model="picker"
                         :min="min"
                         :max="max"
+                        @change="getQuotation"
                     ></v-date-picker>
                 </v-card>
                 <v-card
@@ -19,7 +20,10 @@
                     class="mx-auto mt-4"
                     elevation="5"
                 >
-                    <v-card-text class="display-2 prueba">$ 56.50</v-card-text>
+                    <v-card-text class="white--text">
+                        <span v-if="dolar !== ''" class="display-1">${{ dolar }}</span>
+                        <span v-else class="display-1">No hay datos para esta fecha</span> 
+                    </v-card-text>
                 </v-card>
             </v-col>
         </v-row>
@@ -60,7 +64,7 @@ export default {
                     this.datos = this.datos.data;
                 }
                 this.datos.forEach( itemCotizacion => {
-                    if(itemCotizacion.d === this.fecha){
+                    if(itemCotizacion.d === this.picker){
                         this.dolar = itemCotizacion.v;
                     }
                 });                                

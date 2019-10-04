@@ -1,6 +1,6 @@
 <template>
     <div>
-        <v-dialog :value="loading" hide-overlay persistent width="300">
+        <v-dialog :value="loading" persistent width="300">
             <v-card color="purple" dark>
                 <v-card-text>
                     Obteniendo cotizaciones desde BCRA
