@@ -1,9 +1,11 @@
 <template>
   <v-app>
-    <v-app-bar app>
+    <v-app-bar app color="purple" dark>
       <v-toolbar-title class="headline text-uppercase">
-        <span>Cotización</span>
-        <span class="font-weight-light"> BCRA</span>
+        <router-link to="/" id="logo">
+          <span>Cotización</span>
+          <span class="font-weight-light"> BCRA</span>
+        </router-link>
       </v-toolbar-title>
       <v-spacer></v-spacer>
 
@@ -59,5 +61,8 @@ export default {
 <style>
   a{
     text-decoration: none;
-  }  
+  }
+  #logo{    
+    color: white; 
+  }
 </style>
