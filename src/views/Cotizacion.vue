@@ -1,7 +1,7 @@
 <template>
     <v-container class="mt-5">
         <v-row align="center" justify="center" v-if="datos.length > 0">
-            <v-col cols="8" class="text-center">
+            <v-col xs="12" md="8" class="text-center">
                 <p class="subtitle-1 mb-5">Seleccione una fecha para conocer la cotización oficial</p>
                 <v-card>
                     <v-date-picker 
