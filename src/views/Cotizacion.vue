@@ -1,6 +1,6 @@
 <template>
     <v-container class="mt-5">
-        <v-row align="center" justify="center">
+        <v-row align="center" justify="center" v-if="datos.length > 0">
             <v-col cols="8" class="text-center">
                 <p class="subtitle-1 mb-5">Seleccione una fecha para conocer la cotización oficial</p>
                 <v-card>
@@ -58,17 +58,15 @@ export default {
             try {
                 if(this.datos.length <= 0){
                     this.showLoading();
-                    this.datos = await axios.get('http://localhost:8080/usd_of', { headers: {
+                    await axios.get('http://localhost:8080/usd_of', { headers: {
                         "Authorization" : `BEARER ${this.api_key}`
-                    }});
-                    this.datos = this.datos.data;
+                    }}).then(cotizaciones => {
+                        this.datos = cotizaciones.data;
+                    });
                 }
-                this.datos.forEach( itemCotizacion => {
-                    if(itemCotizacion.d === this.picker){
-                        this.dolar = itemCotizacion.v;
-                    }
-                });                                
-            } catch (erro) {
+                const itemCotizacion = this.datos.find( item => item.d === this.picker);
+                this.dolar = itemCotizacion !== undefined? itemCotizacion.v : '';
+            } catch (err) {
                 
             }finally {
                 this.hideLoading();
@@ -85,8 +83,5 @@ export default {
 <style scoped>
     .container{
         max-width: 1200px;
-    }
-    .prueba{
-        color: white !important;
     }
 </style>

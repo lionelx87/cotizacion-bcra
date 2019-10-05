@@ -15,7 +15,7 @@
                     <div class="flex-grow-1"></div>
 
                     <v-btn
-                        color="green darken-1"
+                        color="purple"
                         text
                         @click="hideDialog"
                     >
