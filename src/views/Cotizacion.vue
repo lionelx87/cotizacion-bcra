@@ -48,7 +48,9 @@ export default {
             min: '2002-03-04',
             max: new Date().toISOString().substr(0, 10),
             dolar: '',
-            api_key: process.env.VUE_APP_API_KEY_BCRA
+            api_key: process.env.VUE_APP_API_KEY_BCRA,
+            backend: process.env.VUE_APP_BACKEND_URL,
+            cors: process.env.VUE_APP_CORS
         }
     },
     methods: {
@@ -58,8 +60,8 @@ export default {
             try {
                 if(this.datos.length <= 0){
                     this.showLoading();
-                    await axios.get('http://localhost:8080/usd_of', { headers: {
-                        "Authorization" : `BEARER ${this.api_key}`
+                    await axios.get(`${this.cors}${this.backend}/usd_of`, { headers: {
+                        "Authorization" : `BEARER ${this.api_key}`,
                     }}).then(cotizaciones => {
                         this.datos = cotizaciones.data;
                     });
